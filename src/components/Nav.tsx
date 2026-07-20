@@ -5,6 +5,7 @@ const LINKS = [
   { href: "#manifiesto", label: "Manifiesto" },
   { href: "#arquitectura", label: "Arquitectura" },
   { href: "#casos-de-uso", label: "Casos de Uso" },
+  { href: "#soluciones", label: "Soluciones" },
 ];
 
 export default function Nav() {

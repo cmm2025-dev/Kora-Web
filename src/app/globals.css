@@ -1,25 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --color-kora-black: #0a0a0a;
-  --color-kora-panel: #111111;
-  --color-kora-border: #1c1c1c;
-  --color-kora-teal: #00b4a0;
-  --color-kora-deep: #006d61;
-  --color-kora-light: #e8f8f5;
+  /* KORA brand palette */
+  --color-kora-black: #070909;
+  --color-kora-ink: #0a0f0f;
+  --color-kora-panel: #0f1515;
+  --color-kora-panel-raised: #131c1b;
+  --color-kora-border: rgba(180, 255, 245, 0.12);
+  --color-kora-border-strong: rgba(0, 208, 184, 0.34);
+  --color-kora-teal: #00d0b8;
+  --color-kora-teal-bright: #5fffe9;
+  --color-kora-deep: #007d70;
+  --color-kora-light: #e8fffb;
   --color-kora-white: #ffffff;
-  --color-kora-text: #e0e8f0;
-  --color-kora-muted: #5d6d7e;
+  --color-kora-text: #e5f0ee;
+  --color-kora-muted: #879b98;
   --color-kora-success: #27ae60;
   --color-kora-alert: #e67e22;
   --color-kora-error: #e74c3c;
+
+  /* Shared spacing, surfaces and motion */
+  --kora-container: 1200px;
+  --kora-section-space: clamp(5rem, 10vw, 9rem);
+  --kora-radius-sm: 0.75rem;
+  --kora-radius-md: 1.25rem;
+  --kora-radius-lg: 2rem;
+  --kora-shadow-glow: 0 0 48px rgba(0, 208, 184, 0.14);
+  --kora-shadow-glow-strong: 0 0 72px rgba(0, 208, 184, 0.24);
+  --kora-transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
   --color-kora-black: var(--color-kora-black);
+  --color-kora-ink: var(--color-kora-ink);
   --color-kora-panel: var(--color-kora-panel);
+  --color-kora-panel-raised: var(--color-kora-panel-raised);
   --color-kora-border: var(--color-kora-border);
+  --color-kora-border-strong: var(--color-kora-border-strong);
   --color-kora-teal: var(--color-kora-teal);
+  --color-kora-teal-bright: var(--color-kora-teal-bright);
   --color-kora-deep: var(--color-kora-deep);
   --color-kora-light: var(--color-kora-light);
   --color-kora-white: var(--color-kora-white);
@@ -38,12 +57,21 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--color-kora-black);
 }
 
 body {
-  background: var(--color-kora-black);
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(0, 208, 184, 0.08), transparent 34rem),
+    var(--color-kora-black);
   color: var(--color-kora-text);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
 }
 
 ::selection {
@@ -51,25 +79,45 @@ body {
   color: var(--color-kora-black);
 }
 
+.kora-container {
+  width: min(calc(100% - 2rem), var(--kora-container));
+  margin-inline: auto;
+}
+
+.kora-section {
+  padding-block: var(--kora-section-space);
+}
+
+.kora-surface {
+  border: 1px solid var(--color-kora-border);
+  border-radius: var(--kora-radius-md);
+  background: linear-gradient(145deg, rgba(19, 28, 27, 0.92), rgba(8, 13, 13, 0.88));
+  box-shadow: var(--kora-shadow-glow);
+  backdrop-filter: blur(18px);
+}
+
+.kora-eyebrow {
+  color: var(--color-kora-teal-bright);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.kora-focus-ring:focus-visible {
+  outline: 2px solid var(--color-kora-teal-bright);
+  outline-offset: 4px;
+}
+
 @keyframes kora-pulse-ring {
-  0% {
-    r: 24;
-    opacity: 0.35;
-  }
-  100% {
-    r: 36;
-    opacity: 0;
-  }
+  0% { r: 24; opacity: 0.35; }
+  100% { r: 36; opacity: 0; }
 }
 
 @keyframes kora-pulse-dot {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
 }
 
 .kora-pulse-ring {
@@ -83,7 +131,16 @@ body {
 
 .kora-grid-bg {
   background-image:
-    linear-gradient(to right, rgba(224, 232, 240, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(224, 232, 240, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(224, 232, 240, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(224, 232, 240, 0.045) 1px, transparent 1px);
   background-size: 64px 64px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

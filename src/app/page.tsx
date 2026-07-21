@@ -2,9 +2,9 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
 import WhatIsKora from "@/components/sections/WhatIsKora";
-import KoraFilosofia from "@/components/KoraFilosofia";
+import Philosophy from "@/components/sections/Philosophy";
 import Principle from "@/components/sections/Principle";
-import KoraManifiesto from "@/components/KoraManifiesto";
+import Manifesto from "@/components/sections/Manifesto";
 import Architecture from "@/components/sections/Architecture";
 import UseCases from "@/components/sections/UseCases";
 import Solutions from "@/components/sections/Solutions";
@@ -16,9 +16,9 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <WhatIsKora />
-        <KoraFilosofia />
+        <Philosophy />
         <Principle />
-        <KoraManifiesto />
+        <Manifesto />
         <Architecture />
         <UseCases />
         <Solutions />

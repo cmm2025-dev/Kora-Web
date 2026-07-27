@@ -1,4 +1,7 @@
 import Reveal from "../Reveal";
+import Badge from "../ui/Badge";
+import Card from "../ui/Card";
+import SectionTitle from "../ui/SectionTitle";
 
 const STORIES = [
   {
@@ -22,31 +25,26 @@ const EMERGING_SECTORS = ["Industria", "Puertos", "Gobierno"];
 
 export default function UseCases() {
   return (
-    <section
-      id="casos-de-uso"
-      className="border-t border-kora-border px-6 py-32"
-    >
+    <section id="casos-de-uso" className="border-t border-kora-border px-6 py-32">
       <div className="mx-auto max-w-4xl">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.25em] text-kora-teal">
-            Casos de Uso
-          </p>
-          <h2 className="mt-4 max-w-xl text-2xl font-semibold text-white sm:text-3xl">
-            No mostramos productos. Mostramos historias.
-          </h2>
+          <SectionTitle
+            eyebrow="Casos de Uso"
+            title="No mostramos productos. Mostramos historias."
+          />
         </Reveal>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-md border border-kora-border sm:grid-cols-3">
+        <div className="mt-16 grid gap-4 sm:grid-cols-3">
           {STORIES.map((item, i) => (
             <Reveal key={item.sector} delay={i * 0.1}>
-              <div className="h-full bg-kora-panel p-8">
+              <Card className="h-full p-8">
                 <p className="text-xs uppercase tracking-[0.2em] text-kora-teal">
                   {item.sector}
                 </p>
                 <p className="mt-5 text-sm leading-relaxed text-kora-text">
                   {item.story}
                 </p>
-              </div>
+              </Card>
             </Reveal>
           ))}
         </div>
@@ -65,12 +63,9 @@ export default function UseCases() {
               Aplicando el mismo proceso de ingeniería en
             </span>
             {EMERGING_SECTORS.map((sector) => (
-              <span
-                key={sector}
-                className="rounded-full border border-kora-border px-4 py-1.5 text-xs text-kora-text"
-              >
+              <Badge key={sector} className="px-4 text-xs text-kora-text">
                 {sector}
-              </span>
+              </Badge>
             ))}
           </div>
         </Reveal>

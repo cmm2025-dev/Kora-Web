@@ -1,4 +1,8 @@
 import Reveal from "../Reveal";
+import Badge from "../ui/Badge";
+import Card from "../ui/Card";
+import Panel from "../ui/Panel";
+import SectionTitle from "../ui/SectionTitle";
 
 const SOLUTIONS = [
   {
@@ -50,17 +54,11 @@ export default function Solutions() {
 
       <div className="relative mx-auto max-w-6xl">
         <Reveal>
-          <div className="flex flex-col gap-7 border-b border-kora-border/80 pb-12 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-kora-teal">Soluciones KORA</p>
-              <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
-                Una infraestructura común. Aplicaciones especializadas.
-              </h2>
-            </div>
-            <p className="max-w-md text-sm leading-relaxed text-kora-muted sm:text-base">
-              Cada solución conserva el mismo núcleo tecnológico, visual y operacional de KORA, adaptado a un contexto de misión específico.
-            </p>
-          </div>
+          <SectionTitle
+            eyebrow="Soluciones KORA"
+            title="Una infraestructura común. Aplicaciones especializadas."
+            description="Cada solución conserva el mismo núcleo tecnológico, visual y operacional de KORA, adaptado a un contexto de misión específico."
+          />
         </Reveal>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -70,61 +68,62 @@ export default function Solutions() {
                 href={solution.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex h-full min-h-[430px] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[linear-gradient(145deg,rgba(13,24,24,0.96),rgba(4,10,11,0.98))] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.28)] transition-all duration-500 hover:-translate-y-1 hover:border-kora-teal/70 hover:shadow-[0_30px_100px_rgba(0,220,190,0.12)] sm:p-10"
+                className="block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kora-teal focus-visible:ring-offset-4 focus-visible:ring-offset-kora-black"
+                aria-label={`Explorar ${solution.name}`}
               >
-                <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-kora-teal/[0.06] blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kora-teal/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <Card interactive className="group flex h-full min-h-[430px] flex-col p-8 sm:p-10">
+                  <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-kora-teal/[0.06] blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kora-teal/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                <div className="relative flex items-start justify-between gap-6">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-kora-teal/25 bg-kora-teal/[0.06] text-kora-teal shadow-[inset_0_0_24px_rgba(0,220,190,0.05)]">
-                      <ProductIcon type={solution.icon} />
+                  <div className="relative flex items-start justify-between gap-6">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-kora-teal/25 bg-kora-teal/[0.06] text-kora-teal shadow-[inset_0_0_24px_rgba(0,220,190,0.05)]">
+                        <ProductIcon type={solution.icon} />
+                      </div>
+                      <div>
+                        <span className="text-[10px] uppercase tracking-[0.24em] text-kora-muted">{solution.eyebrow}</span>
+                        <h3 className="mt-2 text-xl font-semibold tracking-[0.06em] text-white">{solution.name}</h3>
+                      </div>
                     </div>
-                    <div>
-                      <span className="text-[10px] uppercase tracking-[0.24em] text-kora-muted">{solution.eyebrow}</span>
-                      <h3 className="mt-2 text-xl font-semibold tracking-[0.06em] text-white">{solution.name}</h3>
-                    </div>
+                    <Badge tone="accent" className="font-mono text-[10px] uppercase tracking-[0.18em]">
+                      {solution.code}
+                    </Badge>
                   </div>
-                  <span className="rounded-full border border-kora-teal/25 bg-kora-teal/[0.06] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-kora-teal">
-                    {solution.code}
-                  </span>
-                </div>
 
-                <div className="relative mt-10">
-                  <p className="max-w-md text-2xl font-medium leading-snug text-white sm:text-[1.7rem]">
-                    {solution.tagline}
-                  </p>
-                  <p className="mt-5 max-w-xl text-sm leading-7 text-kora-text sm:text-[15px]">
-                    {solution.description}
-                  </p>
-                </div>
+                  <div className="relative mt-10">
+                    <p className="max-w-md text-2xl font-medium leading-snug text-white sm:text-[1.7rem]">
+                      {solution.tagline}
+                    </p>
+                    <p className="mt-5 max-w-xl text-sm leading-7 text-kora-text sm:text-[15px]">
+                      {solution.description}
+                    </p>
+                  </div>
 
-                <div className="relative mt-8 flex flex-wrap gap-2">
-                  {solution.features.map((feature) => (
-                    <span key={feature} className="rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-1.5 text-[11px] text-kora-muted">
-                      {feature}
+                  <div className="relative mt-8 flex flex-wrap gap-2">
+                    {solution.features.map((feature) => (
+                      <Badge key={feature}>{feature}</Badge>
+                    ))}
+                  </div>
+
+                  <div className="relative mt-auto flex items-center justify-between border-t border-white/[0.07] pt-7">
+                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-kora-teal transition-colors group-hover:text-white">
+                      Explorar solución
                     </span>
-                  ))}
-                </div>
-
-                <div className="relative mt-auto flex items-center justify-between border-t border-white/[0.07] pt-7">
-                  <span className="text-xs font-semibold uppercase tracking-[0.18em] text-kora-teal transition-colors group-hover:text-white">
-                    Explorar solución
-                  </span>
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-kora-teal/30 text-kora-teal transition-all duration-300 group-hover:translate-x-1 group-hover:border-kora-teal group-hover:bg-kora-teal group-hover:text-kora-black">
-                    →
-                  </span>
-                </div>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-kora-teal/30 text-kora-teal transition-all duration-300 group-hover:translate-x-1 group-hover:border-kora-teal group-hover:bg-kora-teal group-hover:text-kora-black" aria-hidden="true">
+                      →
+                    </span>
+                  </div>
+                </Card>
               </a>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={0.2}>
-          <div className="mt-8 flex flex-col gap-4 rounded-xl border border-kora-border/70 bg-kora-panel/40 px-6 py-5 text-sm text-kora-muted sm:flex-row sm:items-center sm:justify-between">
+          <Panel className="mt-8 flex flex-col gap-4 px-6 py-5 text-sm text-kora-muted sm:flex-row sm:items-center sm:justify-between">
             <span className="uppercase tracking-[0.18em] text-kora-teal">Núcleo compartido KORA</span>
             <span>Identidad · Biometría · Evidencia · Comunicaciones · Automatización operacional</span>
-          </div>
+          </Panel>
         </Reveal>
       </div>
     </section>

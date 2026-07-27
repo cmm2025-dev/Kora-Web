@@ -1,4 +1,7 @@
 import Reveal from "../Reveal";
+import Badge from "../ui/Badge";
+import Panel from "../ui/Panel";
+import SectionTitle from "../ui/SectionTitle";
 
 const LAYERS = [
   "Infraestructura",
@@ -30,33 +33,27 @@ const BASE_INFRA = [
 
 export default function Architecture() {
   return (
-    <section
-      id="arquitectura"
-      className="border-t border-kora-border px-6 py-32"
-    >
+    <section id="arquitectura" className="border-t border-kora-border px-6 py-32">
       <div className="mx-auto max-w-4xl">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.25em] text-kora-teal">
-            Arquitectura
-          </p>
-          <h2 className="mt-4 max-w-xl text-2xl font-semibold text-white sm:text-3xl">
-            La plataforma se organiza por capas. Cada módulo comparte esta
-            arquitectura.
-          </h2>
+          <SectionTitle
+            eyebrow="Arquitectura"
+            title="La plataforma se organiza por capas. Cada módulo comparte esta arquitectura."
+          />
         </Reveal>
 
         <Reveal delay={0.15}>
           <div className="mt-16 flex flex-col items-center">
             {LAYERS.map((layer, i) => (
-              <div key={layer} className="flex flex-col items-center">
-                <div className="w-full max-w-md rounded-md border border-kora-border bg-kora-panel py-4 text-center">
+              <div key={layer} className="flex w-full flex-col items-center">
+                <Panel className="w-full max-w-md bg-kora-panel py-4 text-center">
                   <span className="font-mono text-sm tracking-wide text-kora-text">
                     {layer}
                   </span>
-                </div>
-                {i < LAYERS.length - 1 && (
-                  <span className="my-1 h-6 w-px bg-kora-border" />
-                )}
+                </Panel>
+                {i < LAYERS.length - 1 ? (
+                  <span className="my-1 h-6 w-px bg-kora-border" aria-hidden="true" />
+                ) : null}
               </div>
             ))}
           </div>
@@ -69,12 +66,9 @@ export default function Architecture() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {BASE_INFRA.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full border border-kora-border px-4 py-1.5 font-mono text-xs text-kora-text"
-                >
+                <Badge key={tech} className="px-4 font-mono text-xs text-kora-text">
                   {tech}
-                </span>
+                </Badge>
               ))}
             </div>
           </div>

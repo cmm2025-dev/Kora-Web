@@ -1,6 +1,6 @@
 import Reveal from "../Reveal";
 import Badge from "../ui/Badge";
-import Card from "../ui/Card";
+import FeatureCard from "../ui/FeatureCard";
 import SectionTitle from "../ui/SectionTitle";
 
 const STORIES = [
@@ -37,14 +37,7 @@ export default function UseCases() {
         <div className="mt-16 grid gap-4 sm:grid-cols-3">
           {STORIES.map((item, i) => (
             <Reveal key={item.sector} delay={i * 0.1}>
-              <Card className="h-full p-8">
-                <p className="text-xs uppercase tracking-[0.2em] text-kora-teal">
-                  {item.sector}
-                </p>
-                <p className="mt-5 text-sm leading-relaxed text-kora-text">
-                  {item.story}
-                </p>
-              </Card>
+              <FeatureCard eyebrow={item.sector} description={item.story} />
             </Reveal>
           ))}
         </div>
